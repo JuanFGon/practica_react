@@ -1,3 +1,4 @@
+import "../styles/ProductGrid.css";
 import ProductCard from "./ProductCard";
 
 function ProductGrid({ productos }) {

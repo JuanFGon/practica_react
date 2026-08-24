@@ -1,0 +1,30 @@
+.card-producto {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.imagen-producto {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card-producto h3 {
+    color: #1a1a1a;
+}
+
+.card-producto .precio {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.card-producto .stock {
+    font-size: 0.9rem;
+    color: #777;
+}
