@@ -20,3 +20,9 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+.sin-resultados {
+    text-align: center;
+    color: #777;
+    padding: 40px 0;
+    font-size: 1.1rem;
+}
