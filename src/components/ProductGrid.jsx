@@ -9,7 +9,7 @@ function ProductGrid({ productos }) {
     return (
         <div className="grid-productos">
             {productos.map((p) => (
-                <ProductCard key={p.nombre} {...p} />
+                <ProductCard key={p.id} {...p} />
             ))}
         </div>
     );

@@ -37,6 +37,7 @@
 }
 
 .select-orden {
+    min-width: 190px;
     padding: 12px 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -50,6 +51,7 @@
     outline: none;
     border-color: #1a1a1a;
     box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+
 }
 
 @media (max-width: 600px) {
