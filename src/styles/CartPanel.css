@@ -1,0 +1,136 @@
+.carrito-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 100;
+}
+
+.carrito-panel {
+    background: #fff;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
+}
+
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.carrito-header h2 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+}
+
+.btn-cerrar-carrito {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+.carrito-vacio {
+    color: #777;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.carrito-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.carrito-item {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.carrito-item-imagen {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.carrito-item-info {
+    flex: 1;
+}
+
+.carrito-item-nombre {
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.carrito-item-precio {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.carrito-item-controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carrito-item-derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.carrito-item-subtotal {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.btn-quitar-producto {
+    background: none;
+    border: none;
+    color: #b00020;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.carrito-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    margin-top: 8px;
+    border-top: 2px solid #1a1a1a;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+.carrito-total-valor {
+    color: #1a1a1a;
+}
+
+@media (max-width: 480px) {
+    .carrito-panel {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,43 @@
+.resumen-compra {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    font-size: 0.9rem;
+    max-width: calc(100% - 32px);
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.resumen-compra:hover {
+    transform: translateX(-50%) scale(1.02);
+}
+
+.resumen-total {
+    font-weight: bold;
+    color: #ffe600;
+}
+
+.resumen-ver {
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 480px) {
+    .resumen-compra {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+        padding: 10px 20px;
+    }
+}

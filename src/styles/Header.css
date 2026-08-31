@@ -39,6 +39,43 @@ nav a:hover {
     color: #0056b3;
 }
 
+.btn-carrito {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #222222;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-carrito:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.contador-carrito {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: #1a1a1a;
+    color: #ffe600;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
 @media (max-width: 600px) {
     nav {
         flex-direction: column;

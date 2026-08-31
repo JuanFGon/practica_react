@@ -34,6 +34,10 @@ Este repositorio corresponde solo a la capa de frontend. La API y la base de dat
 - Ordenamiento por precio (menor a mayor / mayor a menor).
 - Tarjetas con imagen, nombre, precio y disponibilidad.
 - Imagen de respaldo (placeholder) cuando el producto no tiene una imagen asociada.
+- Carrito de compra: selector de cantidad (+/-) en cada tarjeta, limitado al stock disponible.
+- Barra flotante con el total de unidades y el precio total seleccionado, que abre el carrito al hacer clic.
+- Ícono de carrito en el Header con contador de unidades, que también abre el carrito.
+- Panel desplegable del carrito: lista los productos seleccionados con imagen, precio unitario y subtotal, permite ajustar cantidad o quitar el producto completo, y muestra el total general.
 - Uso de Flexbox para la navegación y la sección principal.
 - Uso de CSS Grid para organizar las tarjetas.
 - Prevención de scroll horizontal.
@@ -58,6 +62,8 @@ Proyecto_React/
 │   │   ├── SortSelect.jsx
 │   │   ├── ProductCard.jsx
 │   │   ├── ProductGrid.jsx
+│   │   ├── CartSummary.jsx
+│   │   ├── CartPanel.jsx
 │   │   └── Footer.jsx
 │   ├── styles/
 │   │   ├── Header.css
@@ -65,7 +71,9 @@ Proyecto_React/
 │   │   ├── SearchBar.css
 │   │   ├── SortSelect.css
 │   │   ├── ProductCard.css
-│   │   └── ProductGrid.css
+│   │   ├── ProductGrid.css
+│   │   ├── CartSummary.css
+│   │   └── CartPanel.css
 │   ├── data/
 │   │   └── productos.js      # dataset de ejemplo, ya no se usa en tiempo de ejecución
 │   ├── utils/
@@ -80,12 +88,14 @@ Proyecto_React/
 
 ## Componentes
 
-- **Header**: menú de navegación con logo y enlaces.
+- **Header**: menú de navegación con logo, enlaces, y el ícono del carrito con contador de unidades (`totalUnidades`) que abre el panel del carrito (`onAbrirCarrito`).
 - **Hero**: sección principal con título, descripción y botón de llamado a la acción.
 - **SearchBar**: input controlado para buscar productos por nombre; recibe `value` y `onChange`.
 - **SortSelect**: select controlado con tres opciones de orden (sin orden, menor a mayor, mayor a menor); recibe `value` y `onChange`.
-- **ProductGrid**: recorre la lista de productos ya filtrada y ordenada, y renderiza un `ProductCard` por cada uno. Muestra un mensaje si no hay resultados.
-- **ProductCard**: tarjeta individual de producto, recibe `nombre`, `precio`, `stock` e `imagen` como props. Si el producto no trae imagen, muestra un placeholder generado con `placehold.co`.
+- **ProductGrid**: recorre la lista de productos ya filtrada y ordenada, y renderiza un `ProductCard` por cada uno, pasándole la cantidad seleccionada y los handlers del carrito. Muestra un mensaje si no hay resultados.
+- **ProductCard**: tarjeta individual de producto, recibe `nombre`, `precio`, `stock`, `imagen`, la cantidad ya agregada al carrito y los handlers para sumar/restar unidades. Incluye el selector de cantidad (+/-), limitado al stock, y se resalta visualmente cuando tiene unidades seleccionadas. Si el producto no trae imagen, muestra un placeholder generado con `placehold.co`.
+- **CartSummary**: barra flotante que aparece solo cuando hay unidades seleccionadas, con el total de unidades y el total a pagar; al hacer clic abre el `CartPanel`.
+- **CartPanel**: panel desplegable (drawer) con el detalle del carrito: imagen, precio unitario y subtotal por producto, controles +/- para ajustar cantidad, botón para quitar el producto completo, y el total general. Se cierra con el botón de cerrar o haciendo clic fuera del panel.
 - **Footer**: información de contacto y derechos de autor.
 
 ## Lógica de datos y conexión con el backend
@@ -94,6 +104,19 @@ Proyecto_React/
 - `utils/catalogo.js`: contiene `obtenerDisponibles()`, encargada de filtrar los productos con stock mayor a cero.
 - Sobre esa lista se aplican en cadena el filtro de búsqueda (estado `busqueda`) y el ordenamiento por precio (estado `orden`) antes de pasarla a `ProductGrid`.
 - `data/productos.js` se mantiene como referencia del dataset original del ejercicio, pero ya no se importa en ningún componente: todo el catálogo que se muestra viene ahora de la base de datos a través de la API.
+
+## Carrito de compra
+
+El carrito vive por completo en el estado de `App.jsx`, sin conexión al backend por ahora:
+
+- `carrito`: objeto `{ [productoId]: cantidad }` con las unidades seleccionadas de cada producto.
+- `agregarUnidad(producto)` / `quitarUnidad(producto)`: suman o restan una unidad, respetando el stock disponible.
+- `quitarProductoCompleto(producto)`: elimina el producto del carrito sin importar la cantidad.
+- `itemsCarrito`: lista derivada con el detalle de cada producto seleccionado (cantidad y subtotal), que consume `CartPanel`.
+- `totalUnidades` y `totalPrecio`: se recalculan en cada render a partir de `carrito` y se muestran en `CartSummary` y en el badge del `Header`.
+- `carritoAbierto`: controla si el panel (`CartPanel`) está visible; se puede abrir desde el ícono del Header o desde la barra `CartSummary`.
+
+Al ser un ejercicio solo de frontend, el carrito no persiste entre recargas ni genera un pedido real en el backend; para eso habría que conectar un botón de "Finalizar compra" con `POST /api/pedidos`, lo cual requeriría ajustar `PedidoRequest` en el backend para aceptar varios productos en un mismo pedido (hoy solo admite uno).
 
 ## Requisitos previos
 
